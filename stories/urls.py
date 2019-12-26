@@ -18,5 +18,7 @@ urlpatterns = [
     # path('single/<int:pk>/',single, name='single'), #int is the integer / pk is the primary key
     path('single/<int:pk>/',SingleRecipeView.as_view(), name='single'), 
     path('stories/',stories, name='stories'),
-    path('user_profile/',user_profile, name='user_profile')
+#   path('user_profile/<int:pk>',user_profile, name='user_profile')
+    path('user-profile/<int:pk>/',UserProfileView.as_view(), name='user-profile'),
+    path('user-edit/<int:pk>/',UserEditView.as_view(), name='user-edit')
 ]

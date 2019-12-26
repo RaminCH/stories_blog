@@ -11,13 +11,13 @@
                             <h2 class="heading mb-4">About Me</h2>
                             <img src='{% static "images/author.jpg" %}' class="img-fluid" alt="Colorlib Template">
                             <div class="text pt-4">
-                                <p>Hi! My name is <strong>Cathy Deon</strong>, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
+                                <p>Hi! My name is <strong>{{ request.user.first_name }}</strong>, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
                                     a large language ocean.</p>
                             </div>
                         </div>
                         <div class="sidebar-box ftco-animate user-profile">
 
-                            <a href="single.html" class="btn btn-hover-color py-2">Edit Profile</a>
+                            <a href="{% url 'stories:user-edit' request.user.pk %}" class="btn btn-hover-color py-2">Edit Profile</a>
 
                         </div>
                         <div class="sidebar-box ftco-animate user-profile">
@@ -43,7 +43,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 ftco-animate">
+                        {% for story in request.user.stories.all %}
+                            <div class="col-md-4 ftco-animate">
                             <div class="blog-entry">
                                 <a class="img-2">
 
@@ -52,51 +53,21 @@
                                         <button type="button" class="delete-event"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </div>
 
-                                    <img src='{% static "images/blog-1.jpg" %}' class="img-fluid" alt="Colorlib Template">
+                                    {% comment %} <img src='{% static "images/blog-1.jpg" %}' class="img-fluid" alt="Colorlib Template"> {% endcomment %}
+                                    <img src='{{ story.image.url }}' class="img-fluid" alt="Colorlib Template">
                                 </a>
                                 <div class="text pt-3">
-                                    <p class="meta d-flex"><span class="pr-3">Dessert</span><span class="ml-auto pl-3">March 01, 2018</span>
+                                    <p class="meta d-flex"><span class="pr-3">{{ story.category.title }}</span><span class="ml-auto pl-3">{{ story.created_at|date:'F d,Y' }}</span>
                                     </p>
-                                    <h3><a href="#">Tasty &amp; Delicious Foods</a></h3>
-                                    <p class="mb-0"><a href="single.html" class="btn btn-black py-2">Read More <span
+                                    <h3><a href="#">{{ story.title }} &amp;</a></h3>
+                                    <p class="mb-0"><a href="{% url 'stories:single' story.id %}" class="btn btn-black py-2">Read More <span
                                         class="icon-arrow_forward ml-4"></span></a></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 ftco-animate">
-                            <div class="blog-entry">
-                                <a class="img-2">
-                                    <div class="user-events__edit">
-                                        <button type="button" class="edit-event"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                        <button type="button" class="delete-event"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </div>
-                                    <img src='{% static "images/blog-2.jpg" %}' class="img-fluid" alt="Colorlib Template"></a>
-                                <div class="text pt-3">
-                                    <p class="meta d-flex"><span class="pr-3">Dessert</span><span class="ml-auto pl-3">March 01, 2018</span>
-                                    </p>
-                                    <h3><a href="#">Tasty &amp; Delicious Foods</a></h3>
-                                    <p class="mb-0"><a href="single.html" class="btn btn-black py-2">Read More <span
-                                        class="icon-arrow_forward ml-4"></span></a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 ftco-animate">
-                            <div class="blog-entry">
-                                <a class="img-2">
-                                    <div class="user-events__edit">
-                                        <button type="button" class="edit-event"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                        <button type="button" class="delete-event"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </div>
-                                    <img src='{% static "images/blog-3.jpg" %}' class="img-fluid" alt="Colorlib Template"></a>
-                                <div class="text pt-3">
-                                    <p class="meta d-flex"><span class="pr-3">Dessert</span><span class="ml-auto pl-3">March 01, 2018</span>
-                                    </p>
-                                    <h3><a href="#">Tasty &amp; Delicious Foods</a></h3>
-                                    <p class="mb-0"><a href="single.html" class="btn btn-black py-2">Read More <span
-                                        class="icon-arrow_forward ml-4"></span></a></p>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
+                        
+                       
                     </div>
                 </div>
 

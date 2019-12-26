@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.forms import UsernameField
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 
 User = get_user_model()
 
@@ -22,7 +23,7 @@ class CustomLoginForm(AuthenticationForm):
     )
 
 class CustomRegisterForm(UserCreationForm):
-    username = UsernameField(widget=forms.TextInput(attrs={
+    username = forms.CharField(widget=forms.TextInput(attrs={
         'class':'form-control',
         'placeholder': 'Username'
     }))
@@ -37,7 +38,7 @@ class CustomRegisterForm(UserCreationForm):
         'placeholder': 'Last Name'
     }))
 
-    email = forms.CharField(widget=forms.TextInput(attrs={
+    email = forms.CharField(widget=forms.EmailInput(attrs={
         'class':'form-control',
         'placeholder': 'Email'
     }))
@@ -54,3 +55,21 @@ class CustomRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['first_name','last_name','username', 'email', 'password1', 'password2',]
+
+
+class CustomResetPasswordForm(PasswordResetForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Email',
+    }), max_length=254)
+
+class CustomSetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'New password'
+    }))
+    
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Confirm new password'
+    }))

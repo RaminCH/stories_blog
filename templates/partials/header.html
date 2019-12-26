@@ -17,6 +17,7 @@
                             <li class="nav-item active"><a href="{{ link.url }}" class="nav-link">{{ link.title }}</a></li>
                             {% else %}
                              <li class="nav-item active"><a href="{% url 'accounts:logout' %}" class="nav-link">Log out</a></li>
+                             <li class="nav-item active"><a href="{% url 'stories:user-profile' request.user.id %}" class="nav-link">Profile</a></li>
                         {% endif %}
                     {% elif link.url == '/accounts/register' %}
                         {% if not user.is_authenticated %}

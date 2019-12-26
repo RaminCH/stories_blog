@@ -45,6 +45,7 @@ class Story(models.Model):
     description = models.TextField(blank=False)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='stories',null=True)# class Category-ni bura elave edirik etc. Category 'Lunch-in icine class Categoryde muxtelif lunch-lar elave edirik sonra Story-se elave edirik'
     updated_at = models.DateTimeField(auto_now = True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stories', default=1) #default=1 default user owner of recipes
 
     def __str__(self):
         return self.title
@@ -73,6 +74,7 @@ class Recipe(models.Model):
     long_description = RichTextField('long description')
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='recipes',null=True)
     updated_at = models.DateTimeField(auto_now = True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes', default=1)
 
     def __str__(self):
         return self.title

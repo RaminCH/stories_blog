@@ -29,8 +29,8 @@ class ContactAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-    fields = ('title', 'image', 'description', 'category',)
-    list_display = ('title', 'category',)
+    fields = ('title', 'image', 'description', 'category', 'owner')
+    list_display = ('title', 'category', 'owner')
     list_filter = ('created_at',)
     search_fields = ('title',)
 
@@ -42,7 +42,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    fields = ('title', 'image', 'description', 'category', 'long_description')
+    fields = ('title', 'image', 'description', 'category', 'long_description', 'owner' )
     list_display = ('title', 'category',)
     list_filter = ('created_at',)
     search_fields = ('title',)

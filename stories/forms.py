@@ -35,3 +35,38 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['comment',]
+
+
+class EditUserForm(forms.ModelForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class':'form-control',
+        'placeholder': 'Username'
+    }))
+
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class':'form-control',
+        'placeholder': 'First Name'
+    }))
+
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class':'form-control',
+        'placeholder': 'Last Name'
+    }))
+
+    email = forms.CharField(widget=forms.EmailInput(attrs={
+        'class':'form-control',
+        'placeholder': 'Email'
+    }))
+
+    # password1 = forms.CharField(widget=forms.PasswordInput(attrs={
+    #     'class':'form-control',
+    #     'placeholder': 'Password'
+    # }))
+
+    # password2 = forms.CharField(widget=forms.PasswordInput(attrs={
+    #     'class':'form-control',
+    #     'placeholder': 'Confirm Password'
+    # }))
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','username', 'email',]

@@ -4,7 +4,9 @@ from django.views.generic import TemplateView, CreateView, ListView, DetailView
 from .forms import *
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
-from django.views.generic.edit import FormMixin
+from django.views.generic.edit import FormMixin, UpdateView
+from django.contrib.auth.models import User
+from stories.forms import *
 
 # Create your views here.
 
@@ -132,5 +134,17 @@ class SingleRecipeView(FormMixin, DetailView): # Single-nin class base-i
 def stories(request):
     return render(request, 'stories/stories.html')
 
-def user_profile(request):
-    return render(request, 'stories/user_profile.html')
+# def user_profile(request):
+#     return render(request, 'stories/user_profile.html')
+
+class UserProfileView(DetailView):
+    model = User
+    template_name = 'stories/user-profile.html'
+
+class UserEditView(UpdateView):
+    model = User
+    template_name = 'stories/user-edit.html'
+    form_class = EditUserForm
+
+    def get_success_url(self):
+        return reverse_lazy('stories:user-profile' , kwargs={'pk': self.request.user.pk})
