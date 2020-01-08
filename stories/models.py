@@ -106,3 +106,13 @@ class Comment(models.Model):
         ordering = ('create_at',)
         verbose_name = 'Rey'
         verbose_name_plural = 'Reyler'
+
+
+class Subscriber(models.Model):
+    email = models.EmailField(max_length=60)
+    #logs
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.email

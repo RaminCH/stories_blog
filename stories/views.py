@@ -46,6 +46,13 @@ class ContactView(CreateView):
     form_class = ContactForm
     success_url = reverse_lazy('stories:contact')
 
+
+class SubscriberView(CreateView):
+    model = Subscriber 
+    form_class = SubscriberForm
+    success_url = reverse_lazy('stories:index')
+    http_method_names = ('post',)    
+
 def create_story(request):
     return render(request, 'stories/create_story.html')
 

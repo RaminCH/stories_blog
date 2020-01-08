@@ -20,5 +20,6 @@ urlpatterns = [
     path('stories/',stories, name='stories'),
 #   path('user_profile/<int:pk>',user_profile, name='user_profile')
     path('user-profile/<int:pk>/',UserProfileView.as_view(), name='user-profile'),
-    path('user-edit/<int:pk>/',UserEditView.as_view(), name='user-edit')
+    path('user-edit/<int:pk>/',UserEditView.as_view(), name='user-edit'),
+    path('subscribe/', SubscriberView.as_view(), name='subscribe')
 ]

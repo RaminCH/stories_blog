@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    {% block css %}
+    
+    
+    {% endblock %}
 </head>
 
 <body>
@@ -31,6 +36,8 @@
     {% block content %}
     <!--  -->
     {% endblock content %}
+
+    {% include 'partials/subscribers.html' %}
 
     {% include 'partials/footer.html' %}
     <!-- loader -->

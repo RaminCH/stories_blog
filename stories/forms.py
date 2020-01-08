@@ -70,3 +70,15 @@ class EditUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name','last_name','username', 'email',]
+
+
+    
+
+class SubscriberForm(forms.ModelForm):
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Enter email address',
+    }))
+    class Meta:
+        model = Subscriber
+        fields = ['email']
