@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    #rest_framework
+    'rest_framework',
+
     #for all auth
     'allauth',
     'allauth.account',
@@ -148,12 +151,16 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Baku'
 
 
+SITE_ADDRESS = 'http://localhost:8000'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Baku' #TIME_ZONE = 'UTC'
+
+
 
 USE_I18N = True
 

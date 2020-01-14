@@ -46,6 +46,7 @@ class Story(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='stories',null=True)# class Category-ni bura elave edirik etc. Category 'Lunch-in icine class Categoryde muxtelif lunch-lar elave edirik sonra Story-se elave edirik'
     updated_at = models.DateTimeField(auto_now = True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stories', default=1) #default=1 default user owner of recipes
+    view_count = models.PositiveIntegerField('View count', default=0) # checks how many ppl watched the story
 
     def __str__(self):
         return self.title
@@ -75,6 +76,7 @@ class Recipe(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='recipes',null=True)
     updated_at = models.DateTimeField(auto_now = True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipes', default=1)
+    view_count = models.PositiveIntegerField('View count', default=0) # checks how many ppl watched the recipe
 
     def __str__(self):
         return self.title
