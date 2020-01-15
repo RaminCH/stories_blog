@@ -1,4 +1,4 @@
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from .views import *
 from django.contrib.auth.views import LogoutView
 
@@ -17,4 +17,5 @@ urlpatterns = [
     # path('password-reset-confirm/uidb64 token', ReserPasswordView.as_view(), name='password-reset-confirm')
     re_path(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
     CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('api/', include('accounts.api.urls'))
 ]

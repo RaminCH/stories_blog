@@ -3,6 +3,7 @@ from stories.models import Recipe
 from django.http import JsonResponse
 from .serializers import RecipeSerializer, RecipeCreateSerializer
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
 class RecipeAPIView(APIView):
     def get(self, request, *args, **kwargs):
@@ -62,5 +63,6 @@ class RecipeChangeAPI(APIView):
 
 
 class RecipeAPIViewSet(ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Recipe.objects.all()
     serializer_class = RecipeCreateSerializer
